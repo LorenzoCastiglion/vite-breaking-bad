@@ -1,5 +1,9 @@
 <template>
     <section class="container card-container">
+        <div class="container d-flex justify-content-center mt-4 mb-2">
+            <div v-html="`Found ${characterList.length} characters`" class="match fw-bold rounded-5 col-3 text-center">
+            </div>
+        </div>
         <CardComponent :characters="characterList" :loading="loading" />
     </section>
 </template>
@@ -47,6 +51,13 @@ export default {
 
 .card-container {
     background-color: $bg-white;
+    padding: 20px;
+}
+
+.match {
+    background-color: $bg-barra;
+    color: $text-white;
+    width: 80%;
     padding: 20px;
 }
 </style>
