@@ -1,3 +1,5 @@
+@use './partials/variables' as*;
+
 $fa-font-path : "./webfonts";
 @import '/node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '/node_modules/@fortawesome/fontawesome-free/scss/brands.scss';
@@ -5,9 +7,22 @@ $fa-font-path : "./webfonts";
 @import '/node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
 @import '@fontsource/montserrat/index.css';
 @import '@fontsource/montserrat/700.css';
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+}
+
+body {
+    background-color: $bg-color ;
+    font-family: $main-font;
+}
+
+img {
+    max-width: 100%;
 }
