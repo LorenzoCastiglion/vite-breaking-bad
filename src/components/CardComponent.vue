@@ -5,7 +5,7 @@
         </div>
 
 
-        <div class="row" v-if="!loading">
+        <div class="row justify-content-center" v-if="!loading">
             <div class="col-2 m-3" v-for="(item, index) in characters" :key="item.char_id">
                 <div class="character text-center">
                     <div class="img-container">
