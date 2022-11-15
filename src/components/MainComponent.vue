@@ -1,4 +1,5 @@
 <template>
+    <SearchComponent @foundChar="getCharacters" />
     <section class="container card-container">
         <div class="container d-flex justify-content-center mt-4 mb-2">
             <div v-html="`Found ${characterList.length} characters`" class="match fw-bold rounded-5 col-3 text-center">
@@ -11,11 +12,12 @@
 <script>
 import axios from 'axios';
 import CardComponent from './CardComponent.vue';
-
+import SearchComponent from './SearchComponent.vue';
 export default {
     name: 'MainComponent',
     components: {
-        CardComponent
+        CardComponent,
+        SearchComponent
     },
     data() {
         return {
@@ -25,15 +27,27 @@ export default {
         }
     },
     methods: {
-        getCharacters() {
+        getCharacters(category) {
+
+            let options = null
+            if (category) {
+                options = {
+                    params: {
+                        category: category,
+
+                    }
+                }
+
+            }
             this.loading = true;
-            axios.get(this.apiUrl).then(
+            axios.get(this.apiUrl, options).then(
                 (res) => {
                     this.characterList = [...res.data];
                     console.log(this.characterList)
                     this.loading = false
                 }
             ).catch((error) => {
+                this.loading = false
                 console.log(error);
             })
         }
@@ -42,8 +56,6 @@ export default {
         this.getCharacters()
     }
 }
-
-
 </script>
 
 <style lang="scss">

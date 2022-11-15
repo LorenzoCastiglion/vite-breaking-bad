@@ -21,12 +21,10 @@
 </template>
 
 <script>
-
 export default {
     name: 'CardComponent',
     props: ['characters', 'loading']
 }
-
 </script>
 
 <style lang="scss">
