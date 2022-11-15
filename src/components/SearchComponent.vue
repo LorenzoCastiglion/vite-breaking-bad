@@ -2,16 +2,16 @@
     <div class="container d-flex mb-3 justify-content-center">
         <form class="row row-cols-lg-auto g-3 align-items-center" @submit.prevent="filterChar">
             <div class="col-12">
-                <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
+
                 <div class="input-group">
 
-                    <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
+                    <input type="text" class="form-control" id="nameSearch" placeholder="A - Z">
                 </div>
             </div>
 
             <div class="col-12">
 
-                <select class="form-select" v-model="search">
+                <select class="form-select" v-model="store.search">
                     <option value="" selected>Choose...</option>
                     <option :value="category" v-for="(category, index) in categoryOptions" :key="index">{{ category }}
                     </option>
@@ -31,27 +31,29 @@
 </template>
 
 <script>
+import { store } from '../store'
 export default {
     name: 'SearchComponent',
     data() {
         return {
+            store,
             categoryOptions: [
                 'Breaking Bad',
                 'Better Call Saul'
             ],
-            search: ''
+
         }
     },
 
     methods: {
         filterChar() {
-            console.log(this.search)
-            this.$emit('foundChar', this.search)
+            console.log(store.search)
+            this.$emit('foundChar', store.search)
         },
 
         resetSearch() {
             this.search = '';
-            this.$emit('foundChar', this.search)
+            this.$emit('foundChar', store.search)
 
         }
     }

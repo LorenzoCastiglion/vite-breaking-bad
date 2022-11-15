@@ -1,29 +1,34 @@
 <template>
     <SearchComponent @foundChar="getCharacters" />
     <section class="container card-container">
+        <counterComponent />
         <div class="container d-flex justify-content-center mt-4 mb-2">
-            <div v-html="`Found ${characterList.length} characters`" class="match fw-bold rounded-5 col-3 text-center">
-            </div>
+
         </div>
-        <CardComponent :characters="characterList" :loading="loading" />
+        <CardComponent :characters="store.characterList" :loading="store.loading" />
+
     </section>
+
 </template>
 
 <script>
 import axios from 'axios';
+import counterComponent from './counterComponent.vue';
 import CardComponent from './CardComponent.vue';
 import SearchComponent from './SearchComponent.vue';
+import { store } from '../store'
 export default {
     name: 'MainComponent',
     components: {
         CardComponent,
-        SearchComponent
+        SearchComponent,
+        counterComponent
     },
     data() {
         return {
-            apiUrl: 'https://www.breakingbadapi.com/api/characters',
-            characterList: [],
-            loading: false
+            store,
+            endPoint: '/characters'
+
         }
     },
     methods: {
@@ -39,15 +44,17 @@ export default {
                 }
 
             }
-            this.loading = true;
-            axios.get(this.apiUrl, options).then(
+            store.loading = true;
+            const url = store.apiUrl + this.endPoint
+            axios.get(url, options).then(
                 (res) => {
-                    this.characterList = [...res.data];
-                    console.log(this.characterList)
-                    this.loading = false
+                    store.characterList = [...res.data];
+                    console.log(store.characterList)
+                    store.loading = false
                 }
             ).catch((error) => {
-                this.loading = false
+                store.loading = false
+
                 console.log(error);
             })
         }

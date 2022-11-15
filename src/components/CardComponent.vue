@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div v-if="loading">
+        <div v-if="loading" class="text-center">
             Sto caricando i dati
         </div>
 
