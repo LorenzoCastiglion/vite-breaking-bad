@@ -1,7 +1,11 @@
 <template>
     <div class="container">
-        <div v-if="loading" class="text-center">
-            Sto caricando i dati
+        <div v-if="loading"
+            class="text-center d-flex justify-content-center align-content-center align-items-lg-center">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <p>Sto caricando i dati</p>
         </div>
 
 
